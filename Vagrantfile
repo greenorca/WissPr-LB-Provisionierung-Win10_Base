@@ -17,8 +17,6 @@ Vagrant.configure("2") do |config|
   # Additional parameters to communicate with Windows
   config.vm.boot_timeout = 60
 
-  config.vm.network "private_network", ip: "192.168.50.4", virtualbox__intnet: "mynetwork"
-
   config.vm.communicator = "winrm"
   config.winrm.port = 55985
 
@@ -83,4 +81,7 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+  config.vm.provision :shell, path: "shell/choco.ps1"
+  config.vm.provision :shell, path: "shell/choco_java.ps1"
+
 end
