@@ -1,5 +1,5 @@
 choco install ojdkbuild17
-choco install eclipse
-choco install processing
+# choco install eclipse - default J2EE, für WISS Eintrieg ungeeignet (ZIP-Lösung)
+# choco install processing - TODO, gibts noch nicht
 choco install drawio
-choco install virtualbox
+# choco install virtualbox - Installation scheitert
