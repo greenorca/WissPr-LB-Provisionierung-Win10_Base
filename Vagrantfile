@@ -83,9 +83,13 @@ Vagrant.configure("2") do |config|
   # SHELL
 
   config.vm.provision :shell, path: "shell/choco.ps1"
-  # config.vm.provision :shell, path: "shell/choco_java.ps1"
-  config.vm.provision :shell, inline: "copy %systemdrive%\vagrant\shell\software\eclipse.zip $HOME\Desktop"
-  # config.vm.provision :shell, path: "shell/extract_eclipse.ps1"
+  config.vm.provision :shell, path: "shell/choco_java.ps1"
+  config.vm.provision :shell, path: "shell/extract_eclipse.ps1"
+
+  # config.vm.provision :shell, inline: 'COPY-ITEM "C:\vagrant\shell\software\eclipse.zip" -Destination "$HOME\"'
+  # config.vm.provision :shell, inline: '7z x eclipse.zip"'
+
+
 
 
 end

@@ -30,5 +30,13 @@
 2. nur nötige wenn Basis-OS geändert wurde:
   * Image für Vagrant exportieren (dauert eine Weile): ~vagrant package --base Win10_Base --output Win10x64.box~
   * Image im vagrant "registieren" (dauert auch ein bisschen): ~vagrant box add Win10x64.box --name Win10x64~
+      - gegebenenfalls muss die existierende Box vorher entfernt werden: 
+          - vagrant box remove Win10x64
+          - del Win10x64.box
 3. chocolatey Software ergänzen/updaten im Vagrantfile
 4. deploy ~vagrant up~
+
+
+# Lokale Chocolatey-Repos
+
+https://www.ipswitch.com/blog/setting-up-an-internal-chocolatey-package-repository

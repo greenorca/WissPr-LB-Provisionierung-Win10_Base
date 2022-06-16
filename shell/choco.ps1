@@ -12,3 +12,5 @@ choco install mysql.workbench
 choco install mysql-connector-java
 
 choco install 7zip
+choco install drawio
+# choco install virtualbox - Installation scheitert
