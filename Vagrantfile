@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "Win10x64"
+  config.vm.box = "Win10x64.box"
   config.vm.guest = :windows
   # Additional parameters to communicate with Windows
   config.vm.boot_timeout = 60
@@ -64,7 +64,7 @@ Vagrant.configure("2") do |config|
    config.vm.provider "virtualbox" do |vb|
      # Display the VirtualBox GUI when booting the machine
      vb.gui = true
-     vb.name = "WissPr-Win10-Base V0.1"
+     vb.name = "WissPr-Win10-Base-V0.1"
      # Customize the amount of memory on the VM:
      vb.memory = "4096"
      vb.cpus = 2
@@ -82,10 +82,10 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
 
-  config.vm.provision :shell, path: "shell/choco.ps1"
-  config.vm.provision :shell, path: "shell/choco_java.ps1"
-  config.vm.provision :shell, path: "shell/extract_eclipse.ps1"
-
+  # config.vm.provision :shell, path: "shell/choco.ps1"
+  # config.vm.provision :shell, path: "shell/choco_java.ps1"
+  # config.vm.provision :shell, path: "shell/extract_eclipse.ps1"
+  config.vm.provision :shell, path: "shell/extract_processing.ps1"
   # config.vm.provision :shell, inline: 'COPY-ITEM "C:\vagrant\shell\software\eclipse.zip" -Destination "$HOME\"'
   # config.vm.provision :shell, inline: '7z x eclipse.zip"'
 
