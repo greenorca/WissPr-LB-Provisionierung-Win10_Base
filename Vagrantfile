@@ -82,10 +82,11 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
 
-  # config.vm.provision :shell, path: "shell/choco.ps1"
+  config.vm.provision :shell, path: "shell/choco.ps1"
   # config.vm.provision :shell, path: "shell/choco_java.ps1"
-  # config.vm.provision :shell, path: "shell/extract_eclipse.ps1"
+  config.vm.provision :shell, path: "shell/extract_eclipse.ps1"
   config.vm.provision :shell, path: "shell/extract_processing.ps1"
+  config.vm.provision :shell, path: "shell/extract_zeal_docset.ps1"
   # config.vm.provision :shell, inline: 'COPY-ITEM "C:\vagrant\shell\software\eclipse.zip" -Destination "$HOME\"'
   # config.vm.provision :shell, inline: '7z x eclipse.zip"'
 

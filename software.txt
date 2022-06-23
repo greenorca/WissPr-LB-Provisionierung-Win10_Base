@@ -1,0 +1,15 @@
+7zip
+drawio
+firefox
+GoogleChrome
+visualstudiocode
+sublimetext4
+atom
+notepadplusplus
+mysql
+mysql.workbench
+mysql-connector-java
+ojdkbuild17
+zeal
+# virtualbox
+# virtualbox.extensionpack
