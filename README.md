@@ -3,7 +3,7 @@
 ## Provisionierung der Softwarepakete
 
 1. chocolatey Software ergänzen/updaten im `software.txt` (Achtung: package-Namen müssen im Choco-Repo geprüft werden, z.B. mit `choco find app-name`)
-2. **test_choco_packages.ps1** prüft, ob alle gelisteten Packages vorhanden sind
+2. `test_choco_packages.ps1` ausführen: damit wird prüft, ob alle gelisteten Packages vorhanden sind
 3. alle Softwares deployen `vagrant up`
 
 Eclipse, Processing sowie Zeal mit Standard-Docsets werden unabhängig von Chocolatey deployed, siehe  extract_*.ps1 Skripte.
