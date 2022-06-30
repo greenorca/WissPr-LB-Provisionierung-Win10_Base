@@ -1,44 +1,44 @@
 # Vorgehen WissPr-Win10-VM-Image Erstellung
 
-1. ~vagrant init~ im Projektverzeichnis ausführen (nur bei neuem Projekt)
+1. `vagrant init` im Projektverzeichnis ausführen (nur bei neuem Projekt)
 1. Basis-OS erstellen in Virtualbox erstellen (Name: Win10_Base, nur bei neuer Betriebssystem-Version nötig)
   - MS Office installieren
   - aktuelle Win - Updates installieren
   - Virtualbox-Guest Additions installieren (wichtig für shared directories!)
   - Chocolatey installieren (wichtig für weitere Provisionierung)
   - aktivere WinRM:
-    ~~~cmd
-      winrm quickconfig -q
-      winrm set winrm/config/winrs @{MaxMemoryPerShellMB="300"}
-      winrm set winrm/config @{MaxTimeoutms="1800000"}
-      winrm set winrm/config/service @{AllowUnencrypted="true"}
-      winrm set winrm/config/service/auth @{Basic="true"}
-      sc config WinRM start=auto
-    ~~~
+      ```cmd
+        winrm quickconfig -q
+        winrm set winrm/config/winrs @{MaxMemoryPerShellMB="300"}
+        winrm set winrm/config @{MaxTimeoutms="1800000"}
+        winrm set winrm/config/service @{AllowUnencrypted="true"}
+        winrm set winrm/config/service/auth @{Basic="true"}
+        sc config WinRM start=auto
+      ```
   - some tweaks
-      ~~~
+      ```
       Set-Item WSMan:localhost\client\trustedhosts -value * -Force
       Set-ExecutionPolicy -Force -ExecutionPolicy Unrestricted
       TODO: WinRM in Firewall freigeben (habe ich manuell gemacht)
-      ~~~
+      ```
   - Ballast entfernen:
-    ~~~
+    ```
     Get-AppXPackage -AllUsers | Remove-AppXPackage
     Disable-ComputerRestore c:
     powercfg -h off    
-    ~~~
+    ```
 2. nur nötige wenn Basis-OS geändert wurde:
-  * Image für Vagrant exportieren (dauert eine Weile): ~vagrant package --base Win10_Base --output Win10x64.box~
-  * Image im vagrant "registieren" (dauert auch ein bisschen): ~vagrant box add Win10x64.box --name Win10x64~
+  * Image für Vagrant exportieren (dauert eine Weile): `vagrant package --base Win10_Base --output Win10x64.box`
+  * Image im vagrant "registieren" (dauert auch ein bisschen): `vagrant box add Win10x64.box --name Win10x64`
       - gegebenenfalls muss die existierende Box vorher entfernt werden:
           - vagrant box remove Win10x64
           - del Win10x64.box
 3. chocolatey Software ergänzen/updaten im `software.txt` (Achtung: package-Namen müssen im Choco-Repo geprüft werden, siehe **test_choco_packages.ps1**)
-4. deploy ~vagrant up~
+4. deploy `vagrant up`
 
 
 
-## What happens on provisionin
+## What happens on provisioning
 
 1. all items from software.txt are installed usin chocolatey
 2. eclipse is extracted from local portable edition, desktop shortcut is created
