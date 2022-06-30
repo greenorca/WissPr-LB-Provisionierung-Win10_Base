@@ -16,41 +16,41 @@ Die folgenden Schritte sind nur bei Änderung des Basisbetriebssystems nötig:
 
 1. `vagrant init` im Projektverzeichnis ausführen (nur bei neuem Projekt)
 1. Basis-OS erstellen in Virtualbox erstellen (Name beachten: Win10_Base)
-  - MS Office installieren
-  - aktuelle Win - Updates installieren
-  - Virtualbox-Guest Additions installieren (wichtig für shared directories!)
-  - aktivere WinRM:
-      ```cmd
-        winrm quickconfig -q
-        winrm set winrm/config/winrs @{MaxMemoryPerShellMB="300"}
-        winrm set winrm/config @{MaxTimeoutms="1800000"}
-        winrm set winrm/config/service @{AllowUnencrypted="true"}
-        winrm set winrm/config/service/auth @{Basic="true"}
-        sc config WinRM start=auto
+    - MS Office installieren
+    - aktuelle Win - Updates installieren
+    - Virtualbox-Guest Additions installieren (wichtig für shared directories!)
+    - aktivere WinRM:
+        ```cmd
+          winrm quickconfig -q
+          winrm set winrm/config/winrs @{MaxMemoryPerShellMB="300"}
+          winrm set winrm/config @{MaxTimeoutms="1800000"}
+          winrm set winrm/config/service @{AllowUnencrypted="true"}
+          winrm set winrm/config/service/auth @{Basic="true"}
+          sc config WinRM start=auto
+        ```
+    - some tweaks
+        ```
+        Set-Item WSMan:localhost\client\trustedhosts -value * -Force
+        Set-ExecutionPolicy -Force -ExecutionPolicy Unrestricted
+        TODO: WinRM in Firewall freigeben (habe ich manuell gemacht)
+        ```
+    - Chocolatey installieren (wichtig für weitere Provisionierung)
       ```
-  - some tweaks
+      Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+      iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+      ```    
+    - Ballast entfernen:
       ```
-      Set-Item WSMan:localhost\client\trustedhosts -value * -Force
-      Set-ExecutionPolicy -Force -ExecutionPolicy Unrestricted
-      TODO: WinRM in Firewall freigeben (habe ich manuell gemacht)
+      Get-AppXPackage -AllUsers | Remove-AppXPackage
+      Disable-ComputerRestore c:
+      powercfg -h off    
       ```
-  - Chocolatey installieren (wichtig für weitere Provisionierung)
-    ```
-    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
-    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-    ```    
-  - Ballast entfernen:
-    ```
-    Get-AppXPackage -AllUsers | Remove-AppXPackage
-    Disable-ComputerRestore c:
-    powercfg -h off    
-    ```
 1. Image für Vagrant exportieren (dauert eine Weile): `vagrant package --base Win10_Base --output Win10x64.box`
 1. Image im vagrant "registieren" (dauert auch ein bisschen): `vagrant box add Win10x64.box --name Win10x64`
       - gegebenenfalls muss die existierende Box vorher entfernt werden:
           - vagrant box remove Win10x64
           - del Win10x64.box
-
+1. weiter mit **Provisionierung der Softwarepakete**
 
 
 <!--
