@@ -33,8 +33,9 @@
       - gegebenenfalls muss die existierende Box vorher entfernt werden:
           - vagrant box remove Win10x64
           - del Win10x64.box
-3. chocolatey Software ergänzen/updaten im Vagrantfile
+3. chocolatey Software ergänzen/updaten im `software.txt` (Achtung: package-Namen müssen im Choco-Repo geprüft werden, siehe **test_choco_packages.ps1**)
 4. deploy ~vagrant up~
+
 
 
 ## What happens on provisionin
