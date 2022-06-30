@@ -1,6 +1,6 @@
 # Vorgehen WissPr-Win10-VM-Image Erstellung
 
-## Provisionierung der zusätzlichen Software
+## Provisionierung der Softwarepakete
 
 1. chocolatey Software ergänzen/updaten im `software.txt` (Achtung: package-Namen müssen im Choco-Repo geprüft werden, z.B. mit `choco find app-name`)
 2. **test_choco_packages.ps1** prüft, ob alle gelisteten Packages vorhanden sind
