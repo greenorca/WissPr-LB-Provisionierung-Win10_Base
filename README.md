@@ -5,10 +5,19 @@
 1. chocolatey Software ergänzen/updaten im `software.txt` (Achtung: package-Namen müssen im Choco-Repo geprüft werden, z.B. mit `choco find app-name`)
 2. `test_choco_packages.ps1` ausführen: damit wird prüft, ob alle gelisteten Packages vorhanden sind
 3. alle Softwares deployen `vagrant up`
+4. Installationen in VM testen, z.B. funktionieren die folgenden Dinge:
+  - mysql-workbench: verbindung zum localhost
+  - `javac -version` im Terminal eingeben, sollte `javac 17...` ausgeben
+  - eclipse starten
+  - atom, vscode starten
+  - Zeal starten, sollte jede Menge Docsets enthalten
+  
+5. VM stoppen  
+4. Snapshot erstellen, z.B.:  `vboxmanage snapshot WissPr-Win10-Base-V0.1 take DeployedBaseSystem`
 
 Eclipse, Processing sowie Zeal mit Standard-Docsets werden unabhängig von Chocolatey deployed, siehe  extract_*.ps1 Skripte.
 
-**TODO:** Damit ist das Virtualbox-Image fertig konfiguriert und kann über noch zu definierende Prozesse auf das WissPr-Masterimage transferiert werden.
+**TODO:** Damit ist das Virtualbox-Image fertig konfiguriert. Nun kann dieses Image über noch zu definierende Prozesse auf das WissPr-Masterimage transferiert werden.
 
 
 ## Neuerstellung des Basis-Betriebssystems
